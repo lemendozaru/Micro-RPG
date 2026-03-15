@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://cxdwnxbgbe6s0"]
 
+[ext_resource type="Script" uid="uid://cp6jbm0dfil0v" path="res://scripts/game_manager.gd" id="1_a12nh"]
 [ext_resource type="Texture2D" uid="uid://b7snxudq6nhlj" path="res://assets/Sprites/backgroundCastles.png" id="1_dn72j"]
+[ext_resource type="PackedScene" uid="uid://crujc6dgymb0l" path="res://scenes/character.tscn" id="3_p1qf1"]
+[ext_resource type="Script" uid="uid://biv7eiextb2m0" path="res://scripts/combat_action.gd" id="4_4k1nj"]
+[ext_resource type="Resource" uid="uid://c6su8qlajdcm6" path="res://actions/heal.tres" id="5_f4pi3"]
+[ext_resource type="Resource" uid="uid://brp8a0fe5347o" path="res://actions/slash.tres" id="6_yahae"]
+[ext_resource type="Resource" uid="uid://bujgipe7yww61" path="res://actions/heavy_hit.tres" id="7_v7i3o"]
 
-[node name="Main" type="Node2D" unique_id=1889302945]
+[node name="Main" type="Node2D" unique_id=1889302945 node_paths=PackedStringArray("player_character")]
+script = ExtResource("1_a12nh")
+player_character = NodePath("PlayerCharacter")
 
 [node name="Background" type="TextureRect" parent="." unique_id=2044833447]
 z_index = -1
@@ -14,3 +22,12 @@ texture = ExtResource("1_dn72j")
 stretch_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1889826801]
+
+[node name="PlayerCharacter" parent="." unique_id=875894264 instance=ExtResource("3_p1qf1")]
+position = Vector2(-230, 0)
+is_player = true
+combat_actions = Array[ExtResource("4_4k1nj")]([ExtResource("5_f4pi3"), ExtResource("6_yahae"), ExtResource("7_v7i3o")])
+
+[node name="IACharacter" parent="." unique_id=1049328792 instance=ExtResource("3_p1qf1")]
+position = Vector2(230, 0)
+combat_actions = Array[ExtResource("4_4k1nj")]([ExtResource("7_v7i3o"), ExtResource("6_yahae"), ExtResource("5_f4pi3")])

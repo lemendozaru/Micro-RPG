@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CombatAction" format=3 uid="uid://c6su8qlajdcm6"]
+
+[ext_resource type="Script" uid="uid://biv7eiextb2m0" path="res://scripts/combat_action.gd" id="1_x1x40"]
+
+[resource]
+script = ExtResource("1_x1x40")
+display_name = "Heal"
+description = "Sana 10 puntos de vida"
+heal_amount = 10
+metadata/_custom_type_script = "uid://biv7eiextb2m0"
