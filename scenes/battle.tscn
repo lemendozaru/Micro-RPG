@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cxdwnxbgbe6s0"]
+
+[ext_resource type="Texture2D" uid="uid://b7snxudq6nhlj" path="res://assets/Sprites/backgroundCastles.png" id="1_dn72j"]
+
+[node name="Main" type="Node2D" unique_id=1889302945]
+
+[node name="Background" type="TextureRect" parent="." unique_id=2044833447]
+z_index = -1
+offset_left = -760.0
+offset_top = -516.0
+offset_right = 744.0
+offset_bottom = 508.0
+texture = ExtResource("1_dn72j")
+stretch_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1889826801]
