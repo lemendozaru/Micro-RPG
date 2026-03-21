@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 	pass
 	
 # Llamada cuando comience el turno del caracter
-func begin_turn ():
+func begin_turn():
 	# Mayor a 1: turno del caracter
 	target_scale = 1.1
 	
