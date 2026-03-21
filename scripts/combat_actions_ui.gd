@@ -47,9 +47,9 @@ func _button_pressed(button : CombatActionButton):
 func _button_entered(button : CombatActionButton):
 	# Actualizamos la descripción del movimiento
 	var ca = button.combat_action
-	description_text.text = "[b]" + ca.display_name + "[/b]n" + ca.description
+	description_text.text = "[b]" + ca.display_name + "[/b]\n" + ca.description
 	
-func _button_exited(button : CombatActionButton):
+func _button_exited(_button : CombatActionButton):
 	# Reiniciamos el texto de la descripción
 	description_text.text = ""
 

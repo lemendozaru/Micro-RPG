@@ -32,7 +32,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	
 # Llamada cuando comience el turno del caracter
@@ -47,16 +47,40 @@ func end_turn ():
 
 # Recibir daño
 func take_damage (amount : int):
-	pass  
+	# Restamos el daño
+	cur_health -= amount
+	# Emitimos la señal
+	OnTakeDamage.emit(cur_health)
+	# Reproducimos el sonido de daño
+	_play_audio(take_damage_sfx)
 	
 # Sanación
 func heal (amount : int):
-	pass
+	# Suma la cantidad de salud a la vida
+	cur_health += amount
+	# Limita la curación a la vida máxima
+	cur_health = clamp(cur_health, 0, max_health)
+	# Emite la señal de curación
+	OnHeal.emit(cur_health)
+	# Reproduce el sonido adecuado
+	_play_audio(heal_sfx)
 	
 # Realizar un movimiento
 func cast_combat_action(action: CombatAction, opponent: Character):
-	pass
+	# Si no hay acción:
+	if action == null:
+		# retorna
+		return
+	# Si la acción tiene daño a melee:
+	if action.melee_damage > 0:
+		# el oponente recibirá el daño de la acción
+		opponent.take_damage(action.melee_damage)
+	# Si la acción cura:
+	if action.heal_amount > 0:
+		# el caracter se cura lo que indique la acción
+		heal(action.heal_amount)
 	
 # Reproducri el sonido correspondiente
 func _play_audio (stream : AudioStream):
-	pass
+	audio.stream = stream
+	audio.play()
