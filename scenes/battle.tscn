@@ -10,9 +10,10 @@
 [ext_resource type="Script" uid="uid://ddonqod1f40ku" path="res://scripts/combat_action_button.gd" id="8_f4pi3"]
 [ext_resource type="Script" uid="uid://byllll3sqhf6w" path="res://scripts/combat_actions_ui.gd" id="8_yahae"]
 
-[node name="Main" type="Node2D" unique_id=1889302945 node_paths=PackedStringArray("player_character")]
+[node name="Main" type="Node2D" unique_id=1889302945 node_paths=PackedStringArray("player_character", "ia_character")]
 script = ExtResource("1_a12nh")
 player_character = NodePath("PlayerCharacter")
+ia_character = NodePath("IACharacter")
 
 [node name="Background" type="TextureRect" parent="." unique_id=2044833447]
 z_index = -1
