@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://ddonqod1f40ku" path="res://scripts/combat_action_button.gd" id="8_f4pi3"]
 [ext_resource type="Script" uid="uid://byllll3sqhf6w" path="res://scripts/combat_actions_ui.gd" id="8_yahae"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yahae"]
+bg_color = Color(0.009408864, 0.37424594, 0.30953583, 1)
+
 [node name="Main" type="Node2D" unique_id=1889302945 node_paths=PackedStringArray("player_character", "ia_character")]
 script = ExtResource("1_a12nh")
 player_character = NodePath("PlayerCharacter")
@@ -90,5 +93,27 @@ offset_bottom = 150.0
 bbcode_enabled = true
 text = "[b]Slash[/b] 
 Causa 5 de daño."
+
+[node name="EndScreen" type="Panel" parent="CanvasLayer" unique_id=1823391428]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yahae")
+
+[node name="HeaderText" type="Label" parent="CanvasLayer/EndScreen" unique_id=1060553502]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="pressed" from="CanvasLayer/CombatActionsUI/ButtonsContainer/PassTurnButton" to="CanvasLayer/CombatActionsUI" method="_on_pass_turn_button_pressed"]

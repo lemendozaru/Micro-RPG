@@ -80,4 +80,58 @@ func player_cast_combat_action(action: CombatAction):
 	
 # Gestión de las decisiones de la IA
 func ia_decide_combat_action() -> CombatAction:
+	# Si la IA no es el jugador actual:
+	if ia_character != current_character:
+		# no regresa nada
+		return null
+	
+	# Alias para las variables
+	var ia = ia_character
+	var player = player_character
+	var actions = ia.combat_actions
+	
+	# Variables para rastrear las ponderaciones
+	var weights: Array[int] = []
+	var total_weight = 0
+	
+	# Calculamos el porcentaje de salud de la IA
+	var ia_health_perc = float(ia.cur_health) / float(ia.max_health)
+	# Calculamos el porcentaje del jugador
+	var player_health_perc = float(player.cur_health) / float(player.max_health)
+	
+	# Para cada acción dentro de las acciones
+	for action in actions:
+		# Variable que toma el peso base de la acción
+		var weight : int = action.base_weight
+		# Si la salud actual del jugador es menor o igual que el daño 
+		# del movimiento:
+		if player.cur_health <= action.melee_damage:
+			# multiplica el peso base por 3
+			weight *= 3
+		
+		# Si es movimiento de curación:
+		if action.heal_amount > 0:
+			# aumenta su peso mientras menos vida tenga la IA
+			weight *= 1 + (1 - ia_health_perc)
+			
+		# Añadimos el peso calculado al arreglo de pesos
+		weights.append(weight)
+		# y lo sumamos a la variable de peso total
+		total_weight += weight
+		
+	# Variable para el peso acumulado
+	var cumulative_weight = 0
+	# Variable aleatoria entre 0 y el peso total
+	var rand_weight = randi_range(0,total_weight)
+	
+	# Para cada peso en el arreglo de pesos:
+	for i in len(actions):
+		# agregamos el peso actual al acumulado
+		cumulative_weight += weights[i]
+		
+		# Si el peso random es menor al acumulado:
+		if rand_weight < cumulative_weight:
+			# devuelve la actual acción del ciclo
+			return actions[i]
+	
 	return null
