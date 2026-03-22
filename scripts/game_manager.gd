@@ -9,17 +9,53 @@ var current_character : Character
 # Referencia al panel de movimientos
 @onready var player_ui = $CanvasLayer/CombatActionsUI
 
+# Referencia al panel
+@onready var end_screen = $CanvasLayer/EndScreen
+
 # Verifica si el juego ha terminado
 var game_over : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Conexión de señal de daño al jugador
+	player_character.OnTakeDamage.connect(_on_player_take_damage)
+	# Conexión de señal de daño a la IA
+	ia_character.OnTakeDamage.connect(_on_ia_take_damage)
+	
+	# Ocultamos la pantalla final por defecto
+	end_screen.visible = false
+	
+	# Siguiente turno
 	next_turn()
 
+# Revisa la salud del jugador
+func _on_player_take_damage (health : int):
+	# Si la vida llega a 0:
+	if health <= 0:
+		# termina el juego y vence la IA
+		end_game(ia_character)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+# Revisa la salud de la IA
+func _on_ia_take_damage (health : int):
+	# Si la vida llega a 0:
+	if health <= 0:
+		# termina el juego y gana el jugador
+		end_game(player_character)
+
+# Define quién gana y muestra la pantalla final
+func end_game (winner : Character):
+	# Vuelve verdadera la variable 
+	game_over = true
+	# Vuelve visible la pantalla final
+	end_screen.visible = true
+	# Si el jugador gana:
+	if winner == player_character:
+		# la etiqueta muestra el texto adecuado.
+		end_screen.set_header_text("¡Ganaste!")
+	# Si no:
+	else:
+		# la etiqueta muestra el mensaje contrario.
+		end_screen.set_header_text("¡Has perdido!")
 
 # Gestión del cambio de turnos
 func next_turn():
