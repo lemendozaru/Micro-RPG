@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://s748bu0b8yb8"]
+
+[ext_resource type="Script" uid="uid://djcwry6q6u8v7" path="res://scripts/menu.gd" id="1_vjb58"]
+[ext_resource type="Texture2D" uid="uid://b7snxudq6nhlj" path="res://assets/Sprites/backgroundCastles.png" id="1_yqeox"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yqeox"]
+font_size = 64
+font_color = Color(0.59511304, 0.00026471913, 0.59680635, 1)
+outline_size = 25
+
+[node name="Menu" type="Control" unique_id=1723503027]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vjb58")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1860314917]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yqeox")
+expand_mode = 4
+
+[node name="Title" type="Label" parent="." unique_id=1310729923]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -161.5
+offset_top = -44.0
+offset_right = 161.5
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Micro-RPG"
+label_settings = SubResource("LabelSettings_yqeox")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayButton" type="Button" parent="." unique_id=1366494896]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = 66.0
+offset_right = 95.0
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "JUGAR"
+
+[node name="QuitButton" type="Button" parent="." unique_id=1254462934]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = 147.0
+offset_right = 95.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "SALIR"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

@@ -77,8 +77,9 @@ func next_turn():
 	else:
 		# Cede el turno a la IA
 		current_character = ia_character
-		# Comienza el turno para el caracter actual
-		current_character.begin_turn()
+	# Comienza el turno para el caracter actual
+	current_character.begin_turn()
+	
 	# Si es turno del jugador:
 	if current_character.is_player:
 		# Habilita la IU 
